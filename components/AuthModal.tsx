@@ -15,6 +15,9 @@ import { loginSchema } from "@/schema/loginSchema";
 import LoginForm from "./Form/LoginForm";
 import RegisterForm from "./Form/RegisterForm";
 import { registerSchema } from "@/schema/registerSchema";
+import { passwordSignIn } from "@/action/login.action";
+import { passwordSignUp } from "@/action/signup.action";
+import { useRouter } from "next/navigation";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -23,19 +26,27 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isLoading, setisLoading] = useState(false);
+  const router = useRouter();
 
   async function handleLogin(values: z.infer<typeof loginSchema>) {
     setisLoading(true);
     try {
-      console.log("Logging in with:", values);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await passwordSignIn(values);
+
+      if (result?.success) router.push("/");
+
       toast.success("Logged in successfully", {
         description: "Welcome back to ATS Pro!",
       });
       onClose();
     } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Please check your credentials and try again";
+
       toast.error("Login failed", {
-        description: "Please check your credentials and try again",
+        description: errorMessage,
       });
     } finally {
       setisLoading(false);
@@ -45,15 +56,22 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   async function handleRegister(values: z.infer<typeof registerSchema>) {
     setisLoading(true);
     try {
-      console.log("Registering with:", values);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await passwordSignUp(values);
+      if (result?.success) router.push("/");
       toast.success("Account created successfully", {
-        description: "Welcome back to ATS Pro!",
+        description: "Welcome to ATS Pro!",
       });
+
       onClose();
     } catch (error) {
+      console.log(error);
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Please check your information and try again";
+
       toast.error("Registration failed", {
-        description: "Please check your information and try again",
+        description: errorMessage,
       });
     } finally {
       setisLoading(false);

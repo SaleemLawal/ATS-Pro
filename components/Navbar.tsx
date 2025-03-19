@@ -1,15 +1,24 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import AuthModal from "./AuthModal";
+import { User } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/client";
 
-export default function Navbar() {
+interface NavbarProps {
+  user: User | null;
+}
+
+export default function Navbar({ user }: NavbarProps) {
+  const supabase = createClient();
   const pathName = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setisMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -28,6 +37,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+  };
   return (
     <>
       <header
@@ -69,9 +82,27 @@ export default function Navbar() {
               Try Now
             </Link>
             <ThemeToggle />
-            <Button className="rounded-full" size="sm" onClick={openAuthModal}>
-              Sign In
-            </Button>
+
+            {!user ? (
+              <Button
+                className="rounded-full min-w-20"
+                size="sm"
+                onClick={() => {
+                  closeMenu();
+                  openAuthModal();
+                }}
+              >
+                Sign In
+              </Button>
+            ) : (
+              <Button
+                className="rounded-full min-w-20"
+                size="sm"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </Button>
+            )}
           </nav>
 
           {/* Mobile menu Button */}
@@ -118,15 +149,24 @@ export default function Navbar() {
                 Try Now
               </Link>
 
-              <Button
-                className="w-full mt-2 rounded-full"
-                onClick={() => {
-                  closeMenu();
-                  openAuthModal();
-                }}
-              >
-                Sign In
-              </Button>
+              {!user ? (
+                <Button
+                  className="w-full mt-2 rounded-full"
+                  onClick={() => {
+                    closeMenu();
+                    openAuthModal();
+                  }}
+                >
+                  Sign In
+                </Button>
+              ) : (
+                <Button
+                  className="w-full mt-2 rounded-full"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </Button>
+              )}
             </nav>
           </div>
         )}
