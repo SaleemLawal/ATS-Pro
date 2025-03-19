@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const pathName = usePathname();
@@ -61,13 +62,13 @@ export default function Navbar() {
             >
               Try Now
             </Link>
-            {/* Render theme toggle */}
+            <ThemeToggle />
             <Button className="rounded-full">Sign In</Button>
           </nav>
 
           {/* Mobile menu */}
           <div className="flex items-center gap-2 md:hidden">
-            {/* Render theme toggle */}
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
