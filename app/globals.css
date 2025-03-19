@@ -161,15 +161,27 @@
   .btn-outline {
     @apply inline-flex items-center justify-center rounded-lg border border-input bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
   }
-  
+
   .text-gradient {
     @apply text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text;
   }
   .heading-1 {
     @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
   .subheading {
     @apply text-lg md:text-xl text-muted-foreground font-normal;
+  }
+
+  .glass {
+    @apply bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-black/20;
+  }
+
+  .glass-card {
+    @apply rounded-2xl bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-black/20;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 }
 @layer utilities {
