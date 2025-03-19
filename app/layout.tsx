@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/themeProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Toaster richColors/>
         </ThemeProvider>
       </body>
     </html>

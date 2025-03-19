@@ -6,13 +6,19 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import AuthModal from "./AuthModal";
 
 export default function Navbar() {
   const pathName = usePathname();
   const [isMenuOpen, setisMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
   const toggleMenu = () => setisMenuOpen((prev) => !prev);
   const closeMenu = () => setisMenuOpen(false);
+
+  const openAuthModal = () => setIsAuthModalOpen(true);
+  const closeAuthModal = () => setIsAuthModalOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,10 +69,12 @@ export default function Navbar() {
               Try Now
             </Link>
             <ThemeToggle />
-            <Button className="rounded-full">Sign In</Button>
+            <Button className="rounded-full" size="sm" onClick={openAuthModal}>
+              Sign In
+            </Button>
           </nav>
 
-          {/* Mobile menu */}
+          {/* Mobile menu Button */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <Button
@@ -110,11 +118,21 @@ export default function Navbar() {
                 Try Now
               </Link>
 
-              <Button className="w-full mt-2 rounded-full">Sign In</Button>
+              <Button
+                className="w-full mt-2 rounded-full"
+                onClick={() => {
+                  closeMenu();
+                  openAuthModal();
+                }}
+              >
+                Sign In
+              </Button>
             </nav>
           </div>
         )}
       </header>
+
+      <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
     </>
   );
 }
