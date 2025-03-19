@@ -3,7 +3,7 @@ import { Provider } from "@supabase/supabase-js";
 import { GithubIcon } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
-import { OAuthSignIn } from "@/action/login.action";
+import { OAuthSignIn } from "@/actions/login.action";
 import { FcGoogle } from "react-icons/fc";
 
 type OAuthProvider = {

@@ -15,8 +15,8 @@ import { loginSchema } from "@/schema/loginSchema";
 import LoginForm from "./Form/LoginForm";
 import RegisterForm from "./Form/RegisterForm";
 import { registerSchema } from "@/schema/registerSchema";
-import { passwordSignIn } from "@/action/login.action";
-import { passwordSignUp } from "@/action/signup.action";
+import { passwordSignIn } from "@/actions/login.action";
+import { passwordSignUp } from "@/actions/signup.action";
 import { useRouter } from "next/navigation";
 import { OAuthButtons } from "./OAuthSignIn";
 
