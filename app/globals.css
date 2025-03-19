@@ -145,3 +145,10 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@layer components{
+  .container-tight{
+    @apply container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+}
