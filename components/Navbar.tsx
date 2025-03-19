@@ -53,9 +53,7 @@ export default function Navbar({ user }: NavbarProps) {
       >
         <div className="container-tight flex items-center justify-between py-4 h-16">
           <Link href="/" className="font-bold text-xl">
-            <span className="text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text">
-              ATS Pro
-            </span>
+            <span className="text-gradient">ATS Pro</span>
           </Link>
 
           {/* Desktop Nav */}
