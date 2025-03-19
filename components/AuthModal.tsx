@@ -18,6 +18,7 @@ import { registerSchema } from "@/schema/registerSchema";
 import { passwordSignIn } from "@/action/login.action";
 import { passwordSignUp } from "@/action/signup.action";
 import { useRouter } from "next/navigation";
+import { OAuthButtons } from "./OAuthSignIn";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -104,6 +105,22 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             />
           </TabsContent>
         </Tabs>
+
+        <div className="mt-4 flex flex-col gap-2">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t"></span>
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <OAuthButtons type="Login" />
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

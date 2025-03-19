@@ -1,7 +1,10 @@
 "use server";
 import { loginSchema } from "@/schema/loginSchema";
 import { createClient } from "@/utils/supabase/server";
+import { Provider } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export const passwordSignIn = async (values: z.infer<typeof loginSchema>) => {
@@ -19,5 +22,23 @@ export const passwordSignIn = async (values: z.infer<typeof loginSchema>) => {
   if (error) throw new Error(error.message);
 
   revalidatePath("/", "layout");
-  return { success: true};
+  return { success: true };
+};
+
+export const OAuthSignIn = async (provider: Provider) => {
+  const supabase = await createClient();
+  const headersList = headers();
+  const origin =
+    (await headersList).get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL ?? "";
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo: `${origin}/auth/callback`,
+    },
+  });
+
+  if (error) throw new Error(error.message);
+
+  redirect(data.url);
 };
