@@ -4,7 +4,7 @@ import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
-    <main className="flex-1">
+    <main>
       <Hero />
       <Features />
       <Testimonials />
