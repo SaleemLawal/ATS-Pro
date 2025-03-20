@@ -36,7 +36,7 @@ export function OAuthButtons({ type }: { type: string }) {
         <Button
           key={provider.displayName}
           variant={"outline"}
-          className="flex items-center justify-center gap-2 w-full"
+          className="flex items-center justify-center w-full gap-2"
           onClick={() => handleClick(provider.name)}
         >
           {provider.icon}

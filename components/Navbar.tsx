@@ -51,13 +51,13 @@ export default function Navbar({ user }: NavbarProps) {
             : "bg-transparent"
         )}
       >
-        <div className="container-tight flex items-center justify-between py-4 h-16">
-          <Link href="/" className="font-bold text-xl">
+        <div className="flex items-center justify-between h-16 py-4 container-tight">
+          <Link href="/" className="text-xl font-bold">
             <span className="text-gradient">ATS Pro</span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="items-center hidden gap-6 md:flex">
             <Link
               href="/"
               className={cn(
@@ -119,8 +119,8 @@ export default function Navbar({ user }: NavbarProps) {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="flex inset-0 top-16 z-50 bg-background md:hidden">
-            <nav className="flex flex-col items-center gap-4 p-4 w-full">
+          <div className="inset-0 z-50 flex top-16 bg-background md:hidden">
+            <nav className="flex flex-col items-center w-full gap-4 p-4">
               <Link
                 href="/"
                 onClick={closeMenu}

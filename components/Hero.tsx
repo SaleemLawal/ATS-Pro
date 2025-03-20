@@ -23,28 +23,28 @@ export default function Hero() {
     },
   ];
   return (
-    <div className="relative overflow-hidden pt-32 pb-20 min-h-screen md:pt-40 md:pb-28 ">
+    <div className="relative min-h-screen pt-32 pb-20 overflow-hidden md:pt-40 md:pb-28 ">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-accent/50 to-transparent -z-10" />
 
       {/* Animated background elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <div className="absolute w-64 h-64 rounded-full top-1/4 left-1/4 bg-blue-200/20 blur-3xl animate-float" />
         <div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full animate-float blur-3xl"
+          className="absolute rounded-full bottom-1/3 right-1/4 w-96 h-96 bg-primary/10 animate-float blur-3xl"
           style={{ animationDelay: "2s" }}
         />
       </div>
 
       {/* content */}
-      <div className="container-tight relative z-10 md:mt-20">
+      <div className="relative z-10 container-tight md:mt-20">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8 inline-flex items-center rounded-full px-4 py-1 border border-border bg-background/50 backdrop-blur-sm"
+            className="inline-flex items-center px-4 py-1 mb-8 border rounded-full border-border bg-background/50 backdrop-blur-sm"
           >
             <span className="text-xs font-semibold text-foreground/80">
               AI-Powered Resume Analysis
@@ -56,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="heading-1 mb-6 max-w-4xl"
+            className="max-w-4xl mb-6 heading-1"
           >
             Elevate your Resume with{" "}
             <span className="text-gradient">AI Insights</span>
@@ -79,13 +79,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-16"
+            className="flex flex-col gap-4 mb-16 sm:flex-row"
           >
-            <Link href="/upload" className="btn-primary px-8 py-3">
+            <Link href="/upload" className="px-8 py-3 btn-primary">
               Analyze My Resume
             </Link>
 
-            <Link href="/" className="btn-outline px-8 py-3">
+            <Link href="/" className="px-8 py-3 btn-outline">
               Learn More
             </Link>
           </motion.div>
@@ -95,12 +95,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+            className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12"
           >
             {stats.map((stat, i) => (
               <div key={i} className="flex flex-col items-center">
                 <div className="mb-4">{stat.icon}</div>
-                <h3 className="text-3xl font-bold mb-2">{stat.title}</h3>
+                <h3 className="mb-2 text-3xl font-bold">{stat.title}</h3>
                 <p className="text-muted-foreground">{stat.description}</p>
               </div>
             ))}

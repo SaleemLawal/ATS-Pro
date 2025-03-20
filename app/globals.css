@@ -141,7 +141,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply font-sans bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -166,28 +166,31 @@
     @apply text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text;
   }
   .heading-1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl;
   }
   .heading-2 {
-    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    @apply text-3xl font-bold tracking-tight md:text-4xl;
   }
   .subheading {
-    @apply text-lg md:text-xl text-muted-foreground font-normal;
-  }
-
-  .glass {
-    @apply bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-black/20;
+    @apply text-lg font-normal md:text-xl text-muted-foreground;
   }
 
   .glass-card {
-    @apply rounded-2xl bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-black/20;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    @apply rounded-2xl glass shadow-glass;
   }
 
   .card-hover {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_40px_rgba(0,_0,_0,_0.03)];
   }
 }
+
+@utility shadow-glass {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+@utility glass {
+  @apply border bg-white/70 dark:bg-black/70 backdrop-blur-md border-white/20 dark:border-black/20;
+}
+
 @layer utilities {
   @keyframes float {
     0% {

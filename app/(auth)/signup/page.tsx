@@ -45,7 +45,7 @@ export default function SignUp() {
     }
   }
   return (
-    <div className="min-h-screen relative mt-20 container-tight">
+    <div className="relative min-h-screen mt-20 container-tight">
       {/* Register page */}
       <Dialog
         open={isOpen}
@@ -64,13 +64,13 @@ export default function SignUp() {
 
           <RegisterForm handleRegister={handleRegister} isLoading={isLoading} />
 
-          <div className="mt-4 flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mt-4">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t"></span>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
+                <span className="px-2 bg-background text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -80,7 +80,7 @@ export default function SignUp() {
             </div>
           </div>
 
-          <div className="text-center text-sm text-muted-foreground">
+          <div className="text-sm text-center text-muted-foreground">
             <span>
               Already have an account?{" "}
               <Link href="/signin" className="underline hover:text-primary">

@@ -55,13 +55,13 @@ export default function Features() {
     <section className="py-20 bg-secondary/50">
       <div className="container-tight">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="heading-2 mb-4"
+            className="mb-4 heading-2"
           >
             Unlock the Power of AI for your Resume
           </motion.h2>
@@ -71,7 +71,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="subheading max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto subheading"
           >
             Our platform uses advanced AI to analyze your resume and provide
             actionable insights to help you land your dream job.
@@ -79,7 +79,7 @@ export default function Features() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <motion.div
               key={i}
@@ -91,10 +91,10 @@ export default function Features() {
                 "glass-card p-8 card-hover flex flex-col items-start"
               )}
             >
-              <div className="mb-4 p-3 rounded-lg bg-accent">
+              <div className="p-3 mb-4 rounded-lg bg-accent">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <h3 className="mb-2 text-xl font-bold">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
