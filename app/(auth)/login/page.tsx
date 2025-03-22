@@ -26,7 +26,7 @@ export default function Login() {
     try {
       const result = await passwordSignIn(values);
 
-      if (result?.success) router.push("/");
+      if (result?.success) router.push("/upload");
 
       toast.success("Logged in successfully", {
         description: "Welcome back to ATS Pro!",
