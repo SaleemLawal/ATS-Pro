@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import NavbarServer from "@/components/NavbarServer";
+import { ResumeProvider } from "@/context/ResumeContext";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -30,9 +31,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavbarServer />
-          {children}
-          <Toaster richColors />
+          <ResumeProvider>
+            <NavbarServer />
+            {children}
+            <Toaster richColors />
+          </ResumeProvider>
         </ThemeProvider>
       </body>
     </html>
