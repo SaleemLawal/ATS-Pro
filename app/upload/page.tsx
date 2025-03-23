@@ -8,6 +8,7 @@ import UploadBox from "@/components/UploadBox";
 import { useResume } from "@/context/ResumeContext";
 import AnalysisResult from "@/components/AnalysisResult";
 import { MotionH1, MotionP } from "@/components/use-client";
+import Footer from "@/components/Footer";
 
 export default function UploadPage() {
   const { uploadState, analysis, resetState } = useResume();
@@ -65,6 +66,7 @@ export default function UploadPage() {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
