@@ -48,7 +48,7 @@ export default function UploadBox({ role }: { role: string }) {
       }
       uploadResume(file, role);
     },
-    [uploadResume, toast]
+    [uploadResume, role]
   );
 
   const { getRootProps, getInputProps } = useDropzone({

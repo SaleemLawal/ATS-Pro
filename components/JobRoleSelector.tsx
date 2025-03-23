@@ -86,7 +86,8 @@ export default function JobRoleSelector({
         </PopoverContent>
       </Popover>
       <p className="text-xs text-muted-foreground">
-        Select the job role you're targeting to get tailored resume analysis
+        Select the job role you&apos;re targeting to get tailored resume
+        analysis
       </p>
     </div>
   );
