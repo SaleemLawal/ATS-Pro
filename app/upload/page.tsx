@@ -1,13 +1,13 @@
 "use client";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { Card, CardContent } from "@/components/ui/card";
 import JobRoleSelector from "@/components/JobRoleSelector";
 import { useState } from "react";
 import UploadBox from "@/components/UploadBox";
 import { useResume } from "@/context/ResumeContext";
 import AnalysisResult from "@/components/AnalysisResult";
+import { MotionH1, MotionP } from "@/components/use-client";
 
 export default function UploadPage() {
   const { uploadState, analysis } = useResume();
@@ -23,7 +23,7 @@ export default function UploadPage() {
             >
               <ChevronLeft className="w-4 h-4 mr-1" /> Back to Home
             </Link>
-            <motion.h1
+            <MotionH1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -32,9 +32,9 @@ export default function UploadPage() {
               {uploadState.status === "complete" && analysis
                 ? "Your Resume Analysis"
                 : "Upload Your Resume"}
-            </motion.h1>
+            </MotionH1>
 
-            <motion.p
+            <MotionP
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -43,7 +43,7 @@ export default function UploadPage() {
               {uploadState.status === "complete" && analysis
                 ? "See how your resume stacks up and get AI-powered suggestions to improve it."
                 : "Upload your resume in PDF or Word format to get personalized AI feedback and improvements."}
-            </motion.p>
+            </MotionP>
           </div>
 
           {(!analysis || uploadState.status !== "complete") && (
@@ -59,7 +59,9 @@ export default function UploadPage() {
             </>
           )}
 
-          {analysis && uploadState.status === "complete" && <AnalysisResult analysis={analysis}/>}
+          {analysis && uploadState.status === "complete" && (
+            <AnalysisResult analysis={analysis} />
+          )}
         </div>
       </main>
     </div>

@@ -1,4 +1,3 @@
-"use client";
 import { Feature } from "@/lib/types";
 import {
   BarChart3,
@@ -9,8 +8,8 @@ import {
   Target,
 } from "lucide-react";
 import React from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { MotionDiv, MotionH2, MotionP } from "./use-client";
 
 export default function Features() {
   const features: Feature[] = [
@@ -56,7 +55,7 @@ export default function Features() {
       <div className="container-tight">
         {/* Section header */}
         <div className="mb-16 text-center">
-          <motion.h2
+          <MotionH2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -64,9 +63,9 @@ export default function Features() {
             className="mb-4 heading-2"
           >
             Unlock the Power of AI for your Resume
-          </motion.h2>
+          </MotionH2>
 
-          <motion.p
+          <MotionP
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -75,13 +74,13 @@ export default function Features() {
           >
             Our platform uses advanced AI to analyze your resume and provide
             actionable insights to help you land your dream job.
-          </motion.p>
+          </MotionP>
         </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +95,7 @@ export default function Features() {
               </div>
               <h3 className="mb-2 text-xl font-bold">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

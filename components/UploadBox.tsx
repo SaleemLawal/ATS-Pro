@@ -2,7 +2,6 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
   AlertCircle,
@@ -14,6 +13,7 @@ import {
 import { useResume } from "@/context/ResumeContext";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
+import { MotionDiv } from "./use-client";
 
 export default function UploadBox({ role }: { role: string }) {
   const { uploadState, uploadResume } = useResume();
@@ -70,7 +70,7 @@ export default function UploadBox({ role }: { role: string }) {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {(uploadState.status === "idle" || uploadState.status === "error") && (
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
@@ -112,12 +112,12 @@ export default function UploadBox({ role }: { role: string }) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
       )}
 
       {(uploadState.status === "uploading" ||
         uploadState.status === "analyzing") && (
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
@@ -152,11 +152,11 @@ export default function UploadBox({ role }: { role: string }) {
               {uploadState.file?.name}
             </p>
           </div>
-        </motion.div>
+        </MotionDiv>
       )}
 
       {uploadState.status === "complete" && (
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
@@ -180,7 +180,7 @@ export default function UploadBox({ role }: { role: string }) {
 
             <Button className="btn-primary">View Analysis</Button>
           </div>
-        </motion.div>
+        </MotionDiv>
       )}
     </div>
   );
