@@ -10,7 +10,7 @@ import AnalysisResult from "@/components/AnalysisResult";
 import { MotionH1, MotionP } from "@/components/use-client";
 
 export default function UploadPage() {
-  const { uploadState, analysis } = useResume();
+  const { uploadState, analysis, resetState } = useResume();
   const [jobRole, setJobRole] = useState("software_engineer");
   return (
     <div className="relative flex flex-col min-h-screen">
@@ -20,6 +20,7 @@ export default function UploadPage() {
             <Link
               href="/"
               className="inline-flex items-center mb-4 text-sm transition-colors text-muted-foreground hover:text-foreground"
+              onClick={resetState}
             >
               <ChevronLeft className="w-4 h-4 mr-1" /> Back to Home
             </Link>
