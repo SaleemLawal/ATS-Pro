@@ -4,12 +4,18 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { AlertCircle, CheckCircle, FileText, Loader2, Upload } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle,
+  FileText,
+  Loader2,
+  Upload,
+} from "lucide-react";
 import { useResume } from "@/context/ResumeContext";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 
-export default function UploadBox() {
+export default function UploadBox({ role }: { role: string }) {
   const { uploadState, uploadResume } = useResume();
   const [dragActive, setDragActive] = useState(false);
   const onDrop = useCallback(
@@ -40,7 +46,7 @@ export default function UploadBox() {
         });
         return;
       }
-      uploadResume(file);
+      uploadResume(file, role);
     },
     [uploadResume, toast]
   );
@@ -60,7 +66,7 @@ export default function UploadBox() {
     onDropAccepted: () => setDragActive(false),
     onDropRejected: () => setDragActive(false),
   });
-  
+
   return (
     <div className="w-full max-w-2xl mx-auto">
       {(uploadState.status === "idle" || uploadState.status === "error") && (
@@ -81,8 +87,8 @@ export default function UploadBox() {
             <input {...getInputProps()} />
             <div className="flex flex-col items-center">
               {uploadState.status === "error" ? (
-                <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
-                  <AlertCircle className="h-8 w-8 text-destructive" />
+                <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-destructive/10">
+                  <AlertCircle className="w-8 h-8 text-destructive" />
                 </div>
               ) : (
                 <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-primary/10">
@@ -115,27 +121,27 @@ export default function UploadBox() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="border rounded-xl p-10 text-center bg-background shadow-sm"
+          className="p-10 text-center border shadow-sm rounded-xl bg-background"
         >
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-primary/10">
               {uploadState.status === "uploading" ? (
-                <FileText className="h-8 w-8 text-primary animate-pulse" />
+                <FileText className="w-8 h-8 text-primary animate-pulse" />
               ) : (
-                <Loader2 className="h-8 w-8 text-primary animate-spin" />
+                <Loader2 className="w-8 h-8 text-primary animate-spin" />
               )}
             </div>
 
-            <h3 className="text-lg font-medium mb-2">
+            <h3 className="mb-2 text-lg font-medium">
               {uploadState.status === "uploading"
                 ? "uploading resume..."
                 : "Analyzing your resume..."}
             </h3>
 
-            <p className="text-muted-foreground text-sm mb-6">
+            <p className="mb-6 text-sm text-muted-foreground">
               {uploadState.status === "uploading"
                 ? "This will only take a moment"
-                : "Our AI is reviewing your resume for opportunities"}
+                : "Our AI is reviewing your resume"}
             </p>
 
             <div className="w-full max-w-md mb-4">
@@ -154,21 +160,21 @@ export default function UploadBox() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="border rounded-xl p-10 text-center bg-background shadow-sm"
+          className="p-10 text-center border shadow-sm rounded-xl bg-background"
         >
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-4">
-              <CheckCircle className="h-8 w-8 text-green-500" />
+            <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-green-50">
+              <CheckCircle className="w-8 h-8 text-green-500" />
             </div>
 
-            <h3 className="text-lg font-medium mb-2">Analysis Complete!</h3>
+            <h3 className="mb-2 text-lg font-medium">Analysis Complete!</h3>
 
-            <p className="text-muted-foreground text-sm mb-6">
+            <p className="mb-6 text-sm text-muted-foreground">
               Your resume has been analyzed successfully. View your detailed
               results below.
             </p>
 
-            <p className="text-xs text-muted-foreground mb-4">
+            <p className="mb-4 text-xs text-muted-foreground">
               {uploadState.file?.name}
             </p>
 
