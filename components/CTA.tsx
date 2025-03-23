@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
-import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { MotionDiv, MotionH2, MotionP } from "./use-client";
 
 export default function CTA() {
   return (
@@ -14,7 +13,7 @@ export default function CTA() {
           <div className="absolute w-64 h-64 rounded-full -bottom-20 -left-20 bg-primary/10 blur-3xl" />
 
           <div className="relative z-10 max-w-2xl mx-auto text-center">
-            <motion.h2
+            <MotionH2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -22,9 +21,9 @@ export default function CTA() {
               className="mb-4 heading-2"
             >
               Ready to Upgrade Your Resume?
-            </motion.h2>
+            </MotionH2>
 
-            <motion.p
+            <MotionP
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -33,8 +32,8 @@ export default function CTA() {
             >
               Get instant AI-powered insights to make your resume stand out from
               the competition.
-            </motion.p>
-            <motion.div
+            </MotionP>
+            <MotionDiv
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -46,7 +45,7 @@ export default function CTA() {
               >
                 Analyze My Resume <ArrowRight className="ml-2" />
               </Link>
-            </motion.div>
+            </MotionDiv>
           </div>
         </div>
       </div>

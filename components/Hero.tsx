@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
-import { motion } from "motion/react";
 import Link from "next/link";
 import { CheckCircle, FileText, Users } from "lucide-react";
+import { MotionDiv, MotionH1, MotionP } from "./use-client";
 
 export default function Hero() {
   const stats = [
@@ -40,7 +39,7 @@ export default function Hero() {
       <div className="relative z-10 container-tight md:mt-20">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -49,10 +48,10 @@ export default function Hero() {
             <span className="text-xs font-semibold text-foreground/80">
               AI-Powered Resume Analysis
             </span>
-          </motion.div>
+          </MotionDiv>
 
           {/* Main Title */}
-          <motion.h1
+          <MotionH1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -60,10 +59,10 @@ export default function Hero() {
           >
             Elevate your Resume with{" "}
             <span className="text-gradient">AI Insights</span>
-          </motion.h1>
+          </MotionH1>
 
           {/* sub title */}
-          <motion.p
+          <MotionP
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -72,10 +71,10 @@ export default function Hero() {
             Get personalized feedback, keyword optimization, and
             industry-specific improvements to make your resume stand out to
             employers and ATS systems
-          </motion.p>
+          </MotionP>
 
           {/* CTA Buttons */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -88,10 +87,10 @@ export default function Hero() {
             <Link href="/" className="px-8 py-3 btn-outline">
               Learn More
             </Link>
-          </motion.div>
+          </MotionDiv>
 
           {/* Stats */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -104,7 +103,7 @@ export default function Hero() {
                 <p className="text-muted-foreground">{stat.description}</p>
               </div>
             ))}
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </div>

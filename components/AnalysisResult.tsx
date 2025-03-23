@@ -1,7 +1,5 @@
-"use client";
 import { ResumeAnalysis } from "@/lib/types";
 import React from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
@@ -16,6 +14,7 @@ import { Tabs, TabsContent } from "@radix-ui/react-tabs";
 import { TabsList, TabsTrigger } from "./ui/tabs";
 import { Card, CardContent } from "./ui/card";
 import { Progress } from "./ui/progress";
+import { MotionDiv } from "./use-client";
 
 export default function AnalysisResult({
   analysis,
@@ -48,14 +47,14 @@ export default function AnalysisResult({
   };
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <motion.div
+      <MotionDiv
         variants={container}
         initial="hidden"
         animate="show"
         className="space-y-8"
       >
         {/* Score Overview */}
-        <motion.div variants={item} className="p-8 glass-card">
+        <MotionDiv variants={item} className="p-8 glass-card">
           <div className="flex flex-col items-center gap-8 md:flex-row md:items-start">
             <div className="relative flex-shrink-0 w-32 h-32">
               <div className="relative flex items-center justify-center w-full h-full border-8 rounded-full border-secondary">
@@ -107,10 +106,10 @@ export default function AnalysisResult({
               </div>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Tabs for analysis section */}
-        <motion.div variants={item}>
+        <MotionDiv variants={item}>
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="justify-start w-full h-auto p-0 mb-6 border-b rounded-none">
               {["overview", "suggestions", "keywords", "sections"].map(
@@ -283,7 +282,9 @@ export default function AnalysisResult({
                           ) : (
                             <XCircle className="w-4 h-4 mr-2 text-red-500" />
                           )}
-                          <span className="font-medium text-black">{keyword.keyword}</span>
+                          <span className="font-medium text-black">
+                            {keyword.keyword}
+                          </span>
                         </div>
 
                         <span
@@ -347,8 +348,8 @@ export default function AnalysisResult({
               </Card>
             </TabsContent>
           </Tabs>
-        </motion.div>
-      </motion.div>
+        </MotionDiv>
+      </MotionDiv>
     </div>
   );
 }

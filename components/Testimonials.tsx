@@ -1,6 +1,5 @@
-"use client";
 import React from "react";
-import { motion } from "motion/react";
+import { MotionDiv, MotionH2, MotionP } from "./use-client";
 
 export default function Testimonials() {
   const testimonials = [
@@ -27,7 +26,7 @@ export default function Testimonials() {
     <section className="py-20">
       <div className="container-tight">
         <div className="mb-16 text-center">
-          <motion.h2
+          <MotionH2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -35,8 +34,8 @@ export default function Testimonials() {
             className="mb-4 heading-2"
           >
             Trusted by Job Seekers Worldwide
-          </motion.h2>
-          <motion.p
+          </MotionH2>
+          <MotionP
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -45,12 +44,12 @@ export default function Testimonials() {
           >
             See how our AI-powered resume analysis has helped proffessionals
             land their dream jobs
-          </motion.p>
+          </MotionP>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, i) => {
             return (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +71,7 @@ export default function Testimonials() {
                     {testimonial.role}
                   </p>
                 </div>
-              </motion.div>
+              </MotionDiv>
             );
           })}
         </div>
