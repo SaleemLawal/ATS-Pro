@@ -20,7 +20,7 @@ export async function analyzeResume(buffer: any, role: string) {
     const resumeContent = data.text;
 
     const completion = await openai.chat.completions.create({
-      model: "google/gemini-2.0-flash-lite-preview-02-05:free",
+      model: "google/gemini-2.5-pro-exp-03-25:free",
       messages: [
         {
           role: "system",
@@ -74,7 +74,7 @@ export async function analyzeResume(buffer: any, role: string) {
       ],
     });
 
-    const message = completion.choices[0].message.content;
+    const message = completion?.choices[0].message.content;
     if (!message) throw new Error("No message from AI");
 
     const raw = message.trim();
