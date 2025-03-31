@@ -3,7 +3,6 @@ import { analyzeResume } from "@/actions/resumeReview.action";
 import { ResumeAnalysis, UploadState } from "@/lib/types";
 import { createContext, useContext, useState } from "react";
 import { toast } from "sonner";
-import { mockAnalysis } from "@/lib/mockAnalysis";
 
 interface ResumeContextType {
   uploadState: UploadState;
@@ -58,7 +57,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
       toast.success("Analysis Complete", {
         description: "Your resume has been successfully analyzed",
       });
-    } catch (error) {
+    } catch {
       // console.error("Error analyzing resume:", error);
       toast.error("Analysis Failed", {
         description: "There was an error analyzing your resume",

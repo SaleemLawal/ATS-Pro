@@ -1,5 +1,4 @@
 "use server";
-import { mockAnalysis } from "@/lib/mockAnalysis";
 import { ResumeAnalysisSchema } from "@/schema/analysisSchema";
 import OpenAI from "openai";
 import pdf from "pdf-parse/lib/pdf-parse";
@@ -14,7 +13,7 @@ const openai = new OpenAI({
   },
 });
 
-export async function analyzeResume(buffer: any, role: string) {
+export async function analyzeResume(buffer: Buffer<ArrayBufferLike>, role: string) {
   try {
     const data = await pdf(buffer);
     const resumeContent = data.text;

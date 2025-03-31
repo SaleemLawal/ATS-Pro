@@ -3,7 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import JobRoleSelector from "@/components/JobRoleSelector";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadBox from "@/components/UploadBox";
 import { useResume } from "@/context/ResumeContext";
 import AnalysisResult from "@/components/AnalysisResult";
@@ -13,6 +13,9 @@ import Footer from "@/components/Footer";
 export default function UploadPage() {
   const { uploadState, analysis, resetState } = useResume();
   const [jobRole, setJobRole] = useState("software_engineer");
+  useEffect(() => {
+    resetState();
+  }, []);
   return (
     <div className="relative flex flex-col min-h-screen">
       <main className="flex-1 pt-32 pb-20">
@@ -21,7 +24,6 @@ export default function UploadPage() {
             <Link
               href="/"
               className="inline-flex items-center mb-4 text-sm transition-colors text-muted-foreground hover:text-foreground"
-              onClick={resetState}
             >
               <ChevronLeft className="w-4 h-4 mr-1" /> Back to Home
             </Link>
