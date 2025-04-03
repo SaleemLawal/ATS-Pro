@@ -10,6 +10,13 @@ import ThemeToggle from "./ThemeToggle";
 import AuthModal from "./AuthModal";
 import { User } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/client";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface NavbarProps {
   user: User | null;
@@ -42,6 +49,10 @@ export default function Navbar({ user }: NavbarProps) {
     router.push("/");
     router.refresh();
   };
+
+  const avatarUrl =
+    user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
+
   return (
     <>
       <header
@@ -68,7 +79,6 @@ export default function Navbar({ user }: NavbarProps) {
             >
               Home
             </Link>
-
             <Link
               href="/upload"
               className={cn(
@@ -82,7 +92,26 @@ export default function Navbar({ user }: NavbarProps) {
             </Link>
             <ThemeToggle />
 
-            {!user ? (
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="w-8 h-8 cursor-pointer">
+                    <AvatarImage src={avatarUrl} alt={user.email || ""} />
+                    <AvatarFallback>
+                      {user.email?.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => router.push("/dashboard")}>
+                    Dashboard
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
               <Button
                 className="rounded-full min-w-20"
                 size="sm"
@@ -92,14 +121,6 @@ export default function Navbar({ user }: NavbarProps) {
                 }}
               >
                 Sign In
-              </Button>
-            ) : (
-              <Button
-                className="rounded-full min-w-20"
-                size="sm"
-                onClick={handleSignOut}
-              >
-                Sign Out
               </Button>
             )}
           </nav>
@@ -159,12 +180,27 @@ export default function Navbar({ user }: NavbarProps) {
                   Sign In
                 </Button>
               ) : (
-                <Button
-                  className="w-full mt-2 rounded-full"
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </Button>
+                <>
+                  <Link
+                    href="/dashboard"
+                    onClick={closeMenu}
+                    className={cn(
+                      "w-full p-2 text-center text-lg font-medium rounded-md transition-colors",
+                      pathName === "/dashboard"
+                        ? "bg-accent text-accent-foreground"
+                        : "hover:bg-accent/50 hover:text-accent-foreground"
+                    )}
+                  >
+                    Dashboard
+                  </Link>
+
+                  <Button
+                    className="w-full mt-2 rounded-full"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </Button>
+                </>
               )}
             </nav>
           </div>
