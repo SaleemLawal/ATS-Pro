@@ -4,13 +4,7 @@ import OpenAI from "openai";
 import pdf from "pdf-parse/lib/pdf-parse";
 
 const openai = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPEN_ROUTER_API,
-  dangerouslyAllowBrowser: true,
-  defaultHeaders: {
-    "HTTP-Referer": "http://localhost:3000",
-    "X-Title": "My Resume Analyzer App",
-  },
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export async function analyzeResume(buffer: Buffer<ArrayBufferLike>, role: string) {
@@ -19,7 +13,8 @@ export async function analyzeResume(buffer: Buffer<ArrayBufferLike>, role: strin
     const resumeContent = data.text;
 
     const completion = await openai.chat.completions.create({
-      model: "google/gemini-2.5-pro-exp-03-25:free",
+      model: "gpt-4o",
+      temperature: 0.7,
       messages: [
         {
           role: "system",
@@ -63,12 +58,7 @@ export async function analyzeResume(buffer: Buffer<ArrayBufferLike>, role: strin
         },
         {
           role: "user",
-          content: [
-            {
-              type: "text",
-              text: `Here is a resume for a ${role} position:\n\n${resumeContent}`,
-            },
-          ],
+          content: `Here is a resume for a ${role} position:\n\n${resumeContent}`,
         },
       ],
     });
