@@ -31,9 +31,6 @@ export const OAuthSignIn = async (provider: Provider) => {
   const headerOrigin = (await headersList).get("origin");
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
-  console.log("Header Origin:", headerOrigin);
-  console.log("ENV URL:", envUrl);
-
   const origin = headerOrigin ?? envUrl ?? "";
 
   const { data, error } = await supabase.auth.signInWithOAuth({
